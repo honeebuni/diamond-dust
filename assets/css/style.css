@@ -126,28 +126,48 @@ a:hover {
 ------------------------------ */
 
 .hero {
-    padding: 180px 0;
+    min-height: 620px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 100px 0;
+
     text-align: center;
 }
 
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .eyebrow {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+
     color: var(--accent);
-    font-size: 14px;
+
+    font-size: 13px;
     font-weight: bold;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .hero h1 {
     margin-bottom: 24px;
+
+    font-size: clamp(52px, 8vw, 88px);
 }
 
 .hero-description {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 620px;
+
+    margin-bottom: 32px;
+
     color: var(--muted-text);
+
     font-size: 20px;
+    line-height: 1.7;
 }
 
 
@@ -156,11 +176,34 @@ a:hover {
 ------------------------------ */
 
 .content-section {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .content-section + .content-section {
     border-top: 1px solid var(--border);
+}
+
+.content-section h2 {
+    max-width: 700px;
+}
+
+.section-label {
+    margin-bottom: 12px;
+
+    color: var(--accent);
+
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.about-section {
+    background-color: var(--surface);
+}
+
+.about-section p:not(.section-label) {
+    max-width: 700px;
 }
 
 
@@ -196,9 +239,33 @@ img {
    Buttons
 ------------------------------ */
 
-button {
-    font: inherit;
-    cursor: pointer;
+.button {
+    display: inline-block;
+    padding: 14px 28px;
+
+    background-color: var(--accent);
+    color: #ffffff;
+
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: transparent;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.button:active {
+    transform: translateY(1px);
 }
 
 
@@ -219,11 +286,16 @@ button {
     }
 
     .hero {
+        min-height: 500px;
         padding: 80px 0;
     }
 
+    .hero-description {
+        font-size: 18px;
+    }
+
     h1 {
-        font-size: 72px;
+        font-size: 42px;
     }
 
     h2 {
