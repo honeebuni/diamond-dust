@@ -125,30 +125,36 @@
             </div>
 
 
-            <div class="volume-grid">
+            <div class="chapter-list">
 
-    <article class="volume-card">
+    {% assign volume_one_chapters = site.chapters | where: "volume", "Volume 01" %}
 
-        <p class="volume-number">
-            Volume 01
-        </p>
-
-        <h3>
-            Diamond Dust
-        </h3>
-
-        <p>
-            Chapters 01–02
-        </p>
+    {% for chapter in volume_one_chapters %}
 
         <a
-            href="chapters/chapter-01/"
-            class="text-link"
+            href="{{ chapter.url | relative_url }}"
+            class="chapter-list-item"
         >
-            Start reading →
+
+            <div>
+
+                <span class="chapter-number">
+                    {{ chapter.title }}
+                </span>
+
+                <span class="chapter-volume">
+                    {{ chapter.volume }}
+                </span>
+
+            </div>
+
+            <span class="chapter-arrow">
+                →
+            </span>
+
         </a>
 
-    </article>
+    {% endfor %}
 
 </div>
 
