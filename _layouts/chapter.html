@@ -90,42 +90,67 @@
 
 
                 <nav
-                    class="chapter-navigation"
-                    aria-label="Chapter navigation"
-                >
+    class="chapter-navigation"
+    aria-label="Chapter navigation"
+>
 
-                    {% if page.previous_chapter %}
-                        <a
-                            href="{{ page.previous_chapter | relative_url }}"
-                            class="chapter-nav-link"
-                        >
-                            ← Previous
-                        </a>
-                    {% else %}
-                        <span></span>
-                    {% endif %}
+    {% assign current_index = 0 %}
+
+    {% for chapter in site.chapters %}
+        {% if chapter.url == page.url %}
+            {% assign current_index = forloop.index0 %}
+        {% endif %}
+    {% endfor %}
 
 
-                    <a
-                        href="{{ '/#chapters' | relative_url }}"
-                        class="chapter-nav-link chapter-index"
-                    >
-                        All Chapters
-                    </a>
+    {% assign previous_index = current_index | minus: 1 %}
+    {% assign next_index = current_index | plus: 1 %}
 
 
-                    {% if page.next_chapter %}
-                        <a
-                            href="{{ page.next_chapter | relative_url }}"
-                            class="chapter-nav-link"
-                        >
-                            Next →
-                        </a>
-                    {% else %}
-                        <span></span>
-                    {% endif %}
+    {% if previous_index >= 0 %}
 
-                </nav>
+        {% assign previous_chapter = site.chapters[previous_index] %}
+
+        <a
+            href="{{ previous_chapter.url | relative_url }}"
+            class="chapter-nav-link"
+        >
+            ← Previous
+        </a>
+
+    {% else %}
+
+        <span></span>
+
+    {% endif %}
+
+
+    <a
+        href="{{ '/#chapters' | relative_url }}"
+        class="chapter-nav-link chapter-index"
+    >
+        All Chapters
+    </a>
+
+
+    {% if next_index < site.chapters.size %}
+
+        {% assign next_chapter = site.chapters[next_index] %}
+
+        <a
+            href="{{ next_chapter.url | relative_url }}"
+            class="chapter-nav-link"
+        >
+            Next →
+        </a>
+
+    {% else %}
+
+        <span></span>
+
+    {% endif %}
+
+</nav>
 
             </div>
 
