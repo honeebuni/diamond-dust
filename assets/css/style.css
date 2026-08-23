@@ -5,6 +5,7 @@
     --muted-text: #777777;
     --accent: #775f6f;
     --border: #dedbd6;
+    --reading-font: Georgia, serif;
 
     --font-heading: Georgia, serif;
     --font-body: Arial, sans-serif;
@@ -482,6 +483,58 @@ img {
 .chapter-number {
     font-size: 20px;
 }
+    .chapter-header {
+    padding: 80px 0 60px;
+}
+
+.chapter-header h1 {
+    font-size: 36px;
+}
+
+.chapter-content {
+    margin: 60px auto;
+
+    font-size: 18px;
+
+    line-height: 1.85;
+}
+
+.novel-excerpt,
+.journal-entry,
+.sticky-note {
+    padding: 1.3em 1.2em;
+}
+
+.chapter-navigation {
+    grid-template-columns: 1fr 1fr;
+}
+
+.chapter-index {
+    grid-column: 1 / -1;
+
+    grid-row: 1;
+}
+
+.chapter-navigation .chapter-nav-link:last-child {
+    text-align: right;
+}
+
+.back-to-top {
+    right: 18px;
+    bottom: 18px;
+
+    width: 42px;
+    height: 42px;
+}
+
+.continue-reading {
+    right: 18px;
+    bottom: 72px;
+
+    left: 18px;
+
+    max-width: none;
+}
 
 }
 
@@ -586,4 +639,423 @@ img {
 
 .chapter-navigation .chapter-nav-link:last-child {
     text-align: right;
+}
+
+/* ==================================
+   Reading experience
+================================== */
+
+
+/* Reading progress */
+
+.reading-progress {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    z-index: 1000;
+
+    background: transparent;
+}
+
+.reading-progress-bar {
+    width: 0;
+    height: 100%;
+
+    background: var(--accent);
+
+    transition: width 0.1s linear;
+}
+
+
+/* Chapter header */
+
+.chapter-header {
+    padding: 110px 0 80px;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.chapter-number-label {
+    margin: 16px 0 8px;
+
+    color: var(--muted-text);
+
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.chapter-header h1 {
+    margin: 0;
+
+    font-size: 48px;
+    font-weight: normal;
+}
+
+.korean-title {
+    margin: 14px 0 0;
+
+    color: var(--muted-text);
+
+    font-size: 18px;
+}
+
+
+/* Main reading column */
+
+.chapter-content {
+    max-width: 760px;
+
+    margin: 90px auto;
+
+    font-family: var(--reading-font);
+
+    font-size: 19px;
+
+    line-height: 1.9;
+}
+
+.chapter-content p {
+    margin: 0 0 1.35em;
+
+    font-family: inherit;
+
+    font-size: inherit;
+
+    line-height: inherit;
+}
+
+
+/* Dialogue */
+
+.chapter-content p + p {
+    margin-top: 0;
+}
+
+
+/* Internal section headings */
+
+.chapter-content h2,
+.chapter-content h3 {
+    margin: 4em 0 1.5em;
+
+    font-family: var(--reading-font);
+
+    font-weight: normal;
+
+    line-height: 1.4;
+}
+
+.chapter-content h2 {
+    font-size: 1.5rem;
+
+    letter-spacing: 0.03em;
+}
+
+.chapter-content h3 {
+    font-size: 1.25rem;
+}
+
+
+/* Scene breaks */
+
+.scene-break {
+    margin: 3em 0;
+
+    text-align: center;
+
+    color: var(--muted-text);
+
+    letter-spacing: 0.2em;
+}
+
+
+/* In-story excerpts */
+
+.novel-excerpt {
+    margin: 2.5em 0;
+
+    padding: 1.8em 2em;
+
+    border-left: 2px solid var(--border);
+
+    color: var(--muted-text);
+
+    font-size: 0.95em;
+
+    line-height: 1.8;
+}
+
+.novel-excerpt p {
+    margin-bottom: 1em;
+}
+
+.novel-excerpt p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Glossary */
+
+.glossary-entry {
+    margin: 1em 0;
+
+    color: var(--muted-text);
+
+    font-size: 0.9em;
+
+    line-height: 1.7;
+}
+
+.glossary-entry strong {
+    color: var(--text);
+
+    font-weight: 600;
+}
+
+
+/* Journal / document */
+
+.journal-entry {
+    margin: 2em 0;
+
+    padding: 1.5em 1.7em;
+
+    border: 1px solid var(--border);
+
+    font-size: 0.95em;
+
+    line-height: 1.8;
+}
+
+.journal-entry p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Sticky note */
+
+.sticky-note {
+    display: block;
+
+    margin: 2em 0;
+
+    padding: 1.5em 1.7em;
+
+    border: 1px dashed var(--border);
+
+    font-size: 0.95em;
+
+    line-height: 1.8;
+}
+
+.sticky-note p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Translator notes */
+
+.translator-note {
+    margin: 2.5em 0;
+
+    padding: 1.2em 1.5em;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    color: var(--muted-text);
+
+    font-size: 0.88em;
+
+    line-height: 1.7;
+}
+
+.translator-note-label {
+    display: block;
+
+    margin-bottom: 0.5em;
+
+    color: var(--text);
+
+    font-size: 0.8em;
+
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* End notes */
+
+.end-note {
+    margin-top: 4em;
+
+    color: var(--muted-text);
+
+    font-style: italic;
+
+    opacity: 0.8;
+}
+
+
+/* Chapter navigation */
+
+.chapter-navigation {
+    max-width: 900px;
+
+    margin: 100px auto 0;
+
+    padding-top: 32px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 24px;
+
+    border-top: 1px solid var(--border);
+}
+
+.chapter-nav-link {
+    color: var(--text);
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+.chapter-nav-link:hover {
+    color: var(--accent);
+
+    text-decoration: none;
+}
+
+.chapter-index {
+    color: var(--accent);
+
+    text-align: center;
+}
+
+.chapter-navigation .chapter-nav-link:last-child {
+    text-align: right;
+}
+
+
+/* Back to top */
+
+.back-to-top {
+    position: fixed;
+
+    right: 28px;
+    bottom: 28px;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    color: var(--accent);
+}
+
+
+/* Continue reading */
+
+.continue-reading {
+    position: fixed;
+
+    right: 28px;
+    bottom: 88px;
+
+    max-width: 280px;
+
+    padding: 18px 20px;
+
+    border: 1px solid var(--border);
+
+    background: var(--background);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    z-index: 900;
+}
+
+.continue-reading p {
+    margin: 0 0 12px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.continue-reading-actions {
+    display: flex;
+
+    gap: 12px;
+}
+
+.continue-reading button {
+    border: 0;
+
+    background: none;
+
+    font: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.continue-reading-resume {
+    color: var(--accent);
+}
+
+.continue-reading-dismiss {
+    color: var(--muted-text);
 }
