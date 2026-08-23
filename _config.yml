@@ -1,0 +1,6 @@
+title: Diamond Dust
+
+collections:
+  chapters:
+    output: true
+    permalink: /chapters/:name/
