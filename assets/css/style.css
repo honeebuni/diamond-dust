@@ -1,9 +1,17 @@
 body {
-    background-color: #ffffff;
-    color: #333333;
+    background-color: #f8f7f4;
+    color: #2b2b2b;
     font-family: Georgia, serif;
+    margin: 0;
+    padding: 40px;
 }
 
 h1 {
     font-size: 48px;
+    margin-bottom: 16px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
 }
