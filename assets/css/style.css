@@ -229,6 +229,66 @@ a:hover {
 }
 
 /* ------------------------------
+   Chapter list
+------------------------------ */
+
+.chapter-list {
+    max-width: 800px;
+    margin: 0 auto;
+
+    border-top: 1px solid var(--border);
+}
+
+.chapter-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 24px 0;
+
+    color: var(--text);
+
+    border-bottom: 1px solid var(--border);
+
+    transition:
+        padding 0.2s ease,
+        color 0.2s ease;
+}
+
+.chapter-list-item:hover {
+    padding-left: 12px;
+    padding-right: 12px;
+
+    color: var(--accent);
+
+    text-decoration: none;
+}
+
+.chapter-number {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-family: var(--font-heading);
+    font-size: 22px;
+}
+
+.chapter-volume {
+    display: block;
+
+    color: var(--muted-text);
+
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.chapter-arrow {
+    font-size: 22px;
+}
+
+/* ------------------------------
    Volume grid
 ------------------------------ */
 
@@ -414,6 +474,13 @@ img {
 
 .chapter-navigation .chapter-nav-link:last-child {
     text-align: right;
+}
+    .chapter-list-item {
+    padding: 20px 0;
+}
+
+.chapter-number {
+    font-size: 20px;
 }
 
 }
