@@ -5,10 +5,15 @@
     --muted-text: #777777;
     --accent: #8b6f82;
     --border: #dedbd6;
-    
+
     --font-heading: Georgia, serif;
     --font-body: Arial, sans-serif;
 }
+
+
+/* ------------------------------
+   Base
+------------------------------ */
 
 * {
     box-sizing: border-box;
@@ -20,12 +25,21 @@ html {
 
 body {
     margin: 0;
-    padding: 0;
     background-color: var(--background);
     color: var(--text);
     font-family: var(--font-body);
     line-height: 1.6;
 }
+
+.container {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+}
+
+
+/* ------------------------------
+   Typography
+------------------------------ */
 
 h1,
 h2,
@@ -36,18 +50,13 @@ h3 {
 }
 
 h1 {
-    font-size: 48px;
-    margin-bottom: 16px;
+    font-size: 56px;
+    margin-bottom: 20px;
 }
 
 h2 {
     font-size: 36px;
-    margin-bottom: 16px;
-}
-
-h3 {
-    font-size: 24px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
 }
 
 p {
@@ -65,18 +74,164 @@ a:hover {
     text-decoration: underline;
 }
 
+
+/* ------------------------------
+   Header
+------------------------------ */
+
+.site-header {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.site-logo {
+    color: var(--text);
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.site-logo:hover {
+    text-decoration: none;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.site-nav a {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.site-nav a:hover {
+    color: var(--accent);
+}
+
+
+/* ------------------------------
+   Hero
+------------------------------ */
+
+.hero {
+    padding: 120px 0;
+    text-align: center;
+}
+
+.eyebrow {
+    margin-bottom: 12px;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    margin-bottom: 24px;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--muted-text);
+    font-size: 20px;
+}
+
+
+/* ------------------------------
+   Content sections
+------------------------------ */
+
+.content-section {
+    padding: 80px 0;
+}
+
+.content-section + .content-section {
+    border-top: 1px solid var(--border);
+}
+
+
+/* ------------------------------
+   Footer
+------------------------------ */
+
+.site-footer {
+    padding: 40px 0;
+    background-color: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+    margin-bottom: 0;
+    color: var(--muted-text);
+    font-size: 14px;
+}
+
+
+/* ------------------------------
+   Images
+------------------------------ */
+
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-.container {
-    width: min(1100px, 90%);
-    margin: 0 auto;
-}
+
+/* ------------------------------
+   Buttons
+------------------------------ */
 
 button {
     font: inherit;
     cursor: pointer;
+}
+
+
+/* ------------------------------
+   Mobile
+------------------------------ */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        padding: 20px 0;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .site-nav {
+        gap: 18px;
+    }
+
+    .hero {
+        padding: 80px 0;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .content-section {
+        padding: 60px 0;
+    }
+
 }
