@@ -3,7 +3,7 @@
     --surface: #ffffff;
     --text: #2b2b2b;
     --muted-text: #777777;
-    --accent: #8b6f82;
+    --accent: #775f6f;
     --border: #dedbd6;
 
     --font-heading: Georgia, serif;
@@ -126,7 +126,7 @@ a:hover {
 ------------------------------ */
 
 .hero {
-    padding: 120px 0;
+    padding: 180px 0;
     text-align: center;
 }
 
@@ -223,7 +223,7 @@ button {
     }
 
     h1 {
-        font-size: 42px;
+        font-size: 72px;
     }
 
     h2 {
