@@ -24,15 +24,32 @@
 
 <body>
 
+    <!-- Reading progress -->
+
+    <div
+        class="reading-progress"
+        aria-hidden="true"
+    >
+        <div class="reading-progress-bar"></div>
+    </div>
+
+
     <header class="site-header">
 
         <div class="container header-inner">
 
-            <a href="{{ '/' | relative_url }}" class="site-logo">
+            <a
+                href="{{ '/' | relative_url }}"
+                class="site-logo"
+            >
                 Diamond Dust
             </a>
 
-            <nav class="site-nav" aria-label="Main navigation">
+
+            <nav
+                class="site-nav"
+                aria-label="Main navigation"
+            >
 
                 <a href="{{ '/' | relative_url }}">
                     Home
@@ -57,6 +74,8 @@
 
         <article class="chapter-page">
 
+            <!-- Chapter heading -->
+
             <header class="chapter-header">
 
                 <div class="container">
@@ -65,20 +84,28 @@
                         {{ page.volume }}
                     </p>
 
+                    <p class="chapter-number-label">
+                        {{ page.chapter_number }}
+                    </p>
+
                     <h1>
                         {{ page.title }}
                     </h1>
 
-                    {% if page.subtitle %}
-                        <p class="chapter-subtitle">
-                            {{ page.subtitle }}
+                    {% if page.korean_title %}
+
+                        <p class="korean-title">
+                            {{ page.korean_title }}
                         </p>
+
                     {% endif %}
 
                 </div>
 
             </header>
 
+
+            <!-- Chapter content -->
 
             <div class="container">
 
@@ -89,68 +116,75 @@
                 </div>
 
 
+                <!-- Chapter navigation -->
+
                 <nav
-    class="chapter-navigation"
-    aria-label="Chapter navigation"
->
+                    class="chapter-navigation"
+                    aria-label="Chapter navigation"
+                >
 
-    {% assign current_index = 0 %}
+                    {% assign current_index = 0 %}
 
-    {% for chapter in site.chapters %}
-        {% if chapter.url == page.url %}
-            {% assign current_index = forloop.index0 %}
-        {% endif %}
-    {% endfor %}
+                    {% for chapter in site.chapters %}
 
+                        {% if chapter.url == page.url %}
 
-    {% assign previous_index = current_index | minus: 1 %}
-    {% assign next_index = current_index | plus: 1 %}
+                            {% assign current_index = forloop.index0 %}
 
+                        {% endif %}
 
-    {% if previous_index >= 0 %}
-
-        {% assign previous_chapter = site.chapters[previous_index] %}
-
-        <a
-            href="{{ previous_chapter.url | relative_url }}"
-            class="chapter-nav-link"
-        >
-            ← Previous
-        </a>
-
-    {% else %}
-
-        <span></span>
-
-    {% endif %}
+                    {% endfor %}
 
 
-    <a
-        href="{{ '/#chapters' | relative_url }}"
-        class="chapter-nav-link chapter-index"
-    >
-        All Chapters
-    </a>
+                    {% assign previous_index = current_index | minus: 1 %}
+
+                    {% assign next_index = current_index | plus: 1 %}
 
 
-    {% if next_index < site.chapters.size %}
+                    {% if previous_index >= 0 %}
 
-        {% assign next_chapter = site.chapters[next_index] %}
+                        {% assign previous_chapter = site.chapters[previous_index] %}
 
-        <a
-            href="{{ next_chapter.url | relative_url }}"
-            class="chapter-nav-link"
-        >
-            Next →
-        </a>
+                        <a
+                            href="{{ previous_chapter.url | relative_url }}"
+                            class="chapter-nav-link"
+                        >
+                            ← Previous
+                        </a>
 
-    {% else %}
+                    {% else %}
 
-        <span></span>
+                        <span></span>
 
-    {% endif %}
+                    {% endif %}
 
-</nav>
+
+                    <a
+                        href="{{ '/#chapters' | relative_url }}"
+                        class="chapter-nav-link chapter-index"
+                    >
+                        Chapters
+                    </a>
+
+
+                    {% if next_index < site.chapters.size %}
+
+                        {% assign next_chapter = site.chapters[next_index] %}
+
+                        <a
+                            href="{{ next_chapter.url | relative_url }}"
+                            class="chapter-nav-link"
+                        >
+                            Next →
+                        </a>
+
+                    {% else %}
+
+                        <span></span>
+
+                    {% endif %}
+
+                </nav>
 
             </div>
 
@@ -170,6 +204,53 @@
         </div>
 
     </footer>
+
+
+    <!-- Back to top -->
+
+    <button
+        class="back-to-top"
+        type="button"
+        aria-label="Back to top"
+    >
+        ↑
+    </button>
+
+
+    <!-- Continue reading -->
+
+    <div
+        class="continue-reading"
+        aria-live="polite"
+        hidden
+    >
+
+        <p>
+            You have a saved reading position.
+        </p>
+
+        <div class="continue-reading-actions">
+
+            <button
+                type="button"
+                class="continue-reading-resume"
+            >
+                Resume
+            </button>
+
+            <button
+                type="button"
+                class="continue-reading-dismiss"
+            >
+                Start from beginning
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="{{ '/assets/js/reading.js' | relative_url }}"></script>
 
 </body>
 
