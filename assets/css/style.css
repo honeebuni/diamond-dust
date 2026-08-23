@@ -458,10 +458,16 @@ img {
     padding: 70px 0 50px;
 }
 
-.chapter-content {
-    margin: 60px auto;
-    font-size: 18px;
-    line-height: 1.9;
+.chapter-content h2 {
+    margin: 5em 0 2em;
+
+    font-size: 1.35rem;
+
+    font-weight: normal;
+
+    letter-spacing: 0.08em;
+
+    text-align: center;
 }
 
 .chapter-navigation {
@@ -767,22 +773,22 @@ img {
 /* Scene breaks */
 
 .scene-break {
-    margin: 3em 0;
+    margin: 3.5em 0;
 
     text-align: center;
 
     color: var(--muted-text);
 
-    letter-spacing: 0.2em;
+    font-size: 0.85em;
 }
 
 
 /* In-story excerpts */
 
 .novel-excerpt {
-    margin: 2.5em 0;
+    margin: 3em 0;
 
-    padding: 1.8em 2em;
+    padding: 0 0 0 1.75em;
 
     border-left: 2px solid var(--border);
 
@@ -797,19 +803,15 @@ img {
     margin-bottom: 1em;
 }
 
-.novel-excerpt p:last-child {
-    margin-bottom: 0;
-}
-
 
 /* Glossary */
 
 .glossary-entry {
-    margin: 1em 0;
+    margin: 1.5em 0;
 
     color: var(--muted-text);
 
-    font-size: 0.9em;
+    font-size: 0.88em;
 
     line-height: 1.7;
 }
@@ -823,20 +825,30 @@ img {
 
 /* Journal / document */
 
-.journal-entry {
-    margin: 2em 0;
+.novel-excerpt {
+    margin: 3em 0;
 
-    padding: 1.5em 1.7em;
+    padding: 0 0 0 1.75em;
 
-    border: 1px solid var(--border);
+    border-left: 2px solid var(--border);
+
+    color: var(--muted-text);
 
     font-size: 0.95em;
 
     line-height: 1.8;
 }
 
-.journal-entry p:last-child {
-    margin-bottom: 0;
+.journal-entry {
+    margin: 3em 0;
+
+    padding: 1.5em 1.75em;
+
+    border: 1px solid var(--border);
+
+    font-size: 0.95em;
+
+    line-height: 1.8;
 }
 
 
@@ -847,7 +859,7 @@ img {
 
     margin: 2em 0;
 
-    padding: 1.5em 1.7em;
+    padding: 1.4em 1.6em;
 
     border: 1px dashed var(--border);
 
@@ -856,8 +868,18 @@ img {
     line-height: 1.8;
 }
 
-.sticky-note p:last-child {
-    margin-bottom: 0;
+.sticky-note {
+    display: block;
+
+    margin: 2em 0;
+
+    padding: 1.4em 1.6em;
+
+    border: 1px dashed var(--border);
+
+    font-size: 0.95em;
+
+    line-height: 1.8;
 }
 
 
@@ -881,15 +903,15 @@ img {
 .translator-note-label {
     display: block;
 
-    margin-bottom: 0.5em;
+    margin-bottom: 0.65em;
 
     color: var(--text);
 
-    font-size: 0.8em;
+    font-size: 0.75em;
 
     font-weight: 600;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 
     text-transform: uppercase;
 }
@@ -903,8 +925,6 @@ img {
     color: var(--muted-text);
 
     font-style: italic;
-
-    opacity: 0.8;
 }
 
 
