@@ -206,6 +206,89 @@ a:hover {
     max-width: 700px;
 }
 
+/* ------------------------------
+   Introduction
+------------------------------ */
+
+.introduction {
+    background-color: var(--surface);
+}
+
+.section-heading {
+    max-width: 700px;
+    margin-bottom: 48px;
+}
+
+.introduction-text {
+    max-width: 720px;
+}
+
+.introduction-text p {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+/* ------------------------------
+   Volume grid
+------------------------------ */
+
+.chapters-section {
+    background-color: var(--background);
+}
+
+.volume-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.volume-card {
+    padding: 32px;
+
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.volume-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.volume-number {
+    margin-bottom: 12px;
+
+    color: var(--accent);
+
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.volume-card h3 {
+    margin-bottom: 8px;
+}
+
+.volume-card > p:not(.volume-number) {
+    margin-bottom: 24px;
+    color: var(--muted-text);
+}
+
+.text-link {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
 
 /* ------------------------------
    Footer
@@ -275,6 +358,10 @@ img {
 
 @media (max-width: 700px) {
 
+    .volume-grid {
+    grid-template-columns: 1fr;
+}
+
     .header-inner {
         padding: 20px 0;
         flex-direction: column;
@@ -306,4 +393,17 @@ img {
         padding: 60px 0;
     }
 
+}
+
+/* ------------------------------
+   About
+------------------------------ */
+
+.about-content {
+    max-width: 720px;
+}
+
+.about-content p {
+    font-size: 18px;
+    line-height: 1.8;
 }
