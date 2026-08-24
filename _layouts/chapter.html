@@ -110,50 +110,55 @@
 
     <script>
 
-        const progressBar = document.querySelector(".reading-progress-bar");
-const backToTop = document.querySelector(".scroll-top-button");
-
-        function updateReadingUI() {
-
-            const scrollTop = window.scrollY;
-
-            const documentHeight =
-                document.documentElement.scrollHeight - window.innerHeight;
-
-            const progress =
-                documentHeight > 0
-                    ? (scrollTop / documentHeight) * 100
-                    : 0;
-
-            progressBar.style.width = progress + "%";
+    const progressBar = document.querySelector(".reading-progress-bar");
+    const backToTop = document.querySelector(".scroll-top-button");
 
 
-          if (scrollTop > 500) {
-    backToTop.classList.add("is-visible");
-} else {
-    backToTop.classList.remove("is-visible");
-}
+    function updateReadingUI() {
+
+        const scrollTop = window.scrollY;
+
+        const documentHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+        const progress =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+        progressBar.style.width = progress + "%";
+
+
+        if (scrollTop > 500) {
+
+            backToTop.classList.add("is-visible");
+
+        } else {
+
+            backToTop.classList.remove("is-visible");
 
         }
 
-
-        window.addEventListener("scroll", updateReadingUI);
-
-        updateReadingUI();
+    }
 
 
-        backToTop.addEventListener("click", function (event) {
+    window.addEventListener("scroll", updateReadingUI);
 
-            event.preventDefault();
+    updateReadingUI();
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
 
+    backToTop.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
 
-    </script>
+    });
+
+</script>
 
 
 </body>
