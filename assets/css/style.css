@@ -909,9 +909,7 @@ a:hover {
         width: 42px;
         height: 42px;
     }
-}
-
-/* ------------------------------
+    /* ------------------------------
    Chapter navigation
 ------------------------------ */
 
@@ -950,3 +948,6 @@ a:hover {
 .chapter-navigation .chapter-nav-link:last-child {
     text-align: right;
 }
+
+}
+
