@@ -105,6 +105,19 @@
     ↑
 </a>
 
+    window.addEventListener("scroll", updateReadingUI);
+
+updateReadingUI();
+
+    backToTop.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
     <script>
 
     const progressBar = document.querySelector(".reading-progress-bar");
