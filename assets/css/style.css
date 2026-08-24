@@ -894,13 +894,13 @@ a:hover {
 
     /* Reading components */
 
-    .chapter-content .excerpt,
-    .chapter-content .journal-entry,
-    .chapter-content .sticky-note,
-    .chapter-content .translator-note {
-        padding-left: 1.2em;
-        padding-right: 1.2em;
-    }
+.chapter-content .novel-excerpt,
+.chapter-content .journal-entry,
+.chapter-content .sticky-note,
+.chapter-content .translator-note {
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+}
 
 
     /* Back to top */
