@@ -90,19 +90,71 @@
 
         <nav class="chapter-navigation" aria-label="Chapter navigation">
 
-            <a href="#" class="chapter-nav-link">
-                ← Previous Chapter
-            </a>
+    {% assign current_chapter = page.chapter_number | plus: 0 %}
+    {% assign previous_number = current_chapter | minus: 1 %}
+    {% assign next_number = current_chapter | plus: 1 %}
 
-            <a href="{{ '/' | relative_url }}" class="chapter-index">
-                Chapters
-            </a>
+    {% assign previous_chapter = nil %}
+    {% assign next_chapter = nil %}
 
-            <a href="#" class="chapter-nav-link">
-                Next Chapter →
-            </a>
 
-        </nav>
+    {% for chapter in site.chapters %}
+
+        {% assign chapter_number = chapter.chapter_number | plus: 0 %}
+
+        {% if chapter_number == previous_number %}
+            {% assign previous_chapter = chapter %}
+        {% endif %}
+
+        {% if chapter_number == next_number %}
+            {% assign next_chapter = chapter %}
+        {% endif %}
+
+    {% endfor %}
+
+
+    {% if previous_chapter %}
+
+        <a href="{{ previous_chapter.url | relative_url }}"
+           class="chapter-nav-link">
+
+            ← Chapter {{ previous_chapter.chapter_number }}
+            — {{ previous_chapter.title }}
+
+        </a>
+
+    {% else %}
+
+        <span class="chapter-nav-placeholder"></span>
+
+    {% endif %}
+
+
+    <a href="{{ '/' | relative_url }}"
+       class="chapter-index">
+
+        Chapters
+
+    </a>
+
+
+    {% if next_chapter %}
+
+        <a href="{{ next_chapter.url | relative_url }}"
+           class="chapter-nav-link">
+
+            Chapter {{ next_chapter.chapter_number }}
+            — {{ next_chapter.title }} →
+
+        </a>
+
+    {% else %}
+
+        <span class="chapter-nav-placeholder"></span>
+
+    {% endif %}
+
+</nav>
 
 
     </main>
