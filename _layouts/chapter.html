@@ -128,15 +128,11 @@ const backToTop = document.querySelector(".scroll-top-button");
             progressBar.style.width = progress + "%";
 
 
-            if (scrollTop > 500) {
-
-                backToTop.classList.add("visible");
-
-            } else {
-
-                backToTop.classList.remove("visible");
-
-            }
+          if (scrollTop > 500) {
+    backToTop.classList.add("is-visible");
+} else {
+    backToTop.classList.remove("is-visible");
+}
 
         }
 
