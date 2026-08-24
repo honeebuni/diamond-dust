@@ -38,7 +38,7 @@ korean_title: 침묵의 대가
 
 <p>Standing in front of the refrigerator, he downed half of it in one go, then slowly walked toward the living room window. He finished the rest while gazing at the skyline surrounding Central Park, shining more brilliantly than usual.</p>
 
-<p>In Seoul, the New Year's morning had already begun. Paris… Paris would be a little later, the dawn of the first day of the year just breaking. *Ihyeon — he might already be starting his day diligently. Or maybe he's still in bed, making resolutions for the year.* Imagining Ihyeon's eyes darting this way and that in the pale blue early light, Liu shrugged and let out a short laugh.</p>
+<p>In Seoul, the New Year's morning had already begun. Paris… Paris would be a little later, the dawn of the first day of the year just breaking. <em>Ihyeon — he might already be starting his day diligently. Or maybe he's still in bed, making resolutions for the year.</em> Imagining Ihyeon's eyes darting this way and that in the pale blue early light, Liu shrugged and let out a short laugh.</p>
 
 <p>He had already been in New York for about three weeks for the Pettibone exhibition planned with H&W. After taking New Year's Day off tomorrow and attending the exhibition opening on January 2nd, all of his mandatory schedule would be finished. But he still hadn't booked his return flight to Seoul.</p>
 
@@ -130,7 +130,7 @@ korean_title: 침묵의 대가
 
 <p>Liu was a man who could possess everything he desired through his own strength — yet even such a person sometimes needed encouragement and reassurance from those around him. Especially at a time when he felt small in the face of love.</p>
 
-<p>The sound of running water from the en-suite suddenly stopped. Shushu turned quickly, but had to pause once more before leaving the room. *Alienation* was hanging here, nearly seven thousand miles from Seoul.</p>
+<p>The sound of running water from the en-suite suddenly stopped. Shushu turned quickly, but had to pause once more before leaving the room. <em>Alienation</em> was hanging here, nearly seven thousand miles from Seoul.</p>
 
 <p>After Ihyeon left for Paris, Liu had never once mentioned his name on his own, and when others happened to bring it up, he showed no reaction whatsoever. He hadn't forgotten — but one might have thought he had resolved to try. He kept his feelings hidden to that extent.</p>
 
@@ -568,7 +568,7 @@ korean_title: 침묵의 대가
 
 <p>It wasn't as though he had made some loud announcement to someone who hadn't even asked. He had simply let it slip naturally — mentioning to Jun, who was from Hong Kong, that his boyfriend was also of mixed British, Korean, and Hong Kong descent, just like him. Because he had said it with the intention of making Jun sense his own faint interest and gently step back from it, he wasn't entirely sure whether it had actually come across as natural or not.</p>
 
-<p>*In fact… he couldn't even be sure whether the statement that he had a boyfriend — or the statement that his boyfriend was from Hong Kong — was even true.*</p>
+<p><em>In fact… he couldn't even be sure whether the statement that he had a boyfriend — or the statement that his boyfriend was from Hong Kong — was even true.</em></p>
 
 <p>After parting from Yuni nuna and going up to the fourth floor, Ihyeon dropped his bag on the floor the moment he entered the room. Without turning on the light or taking off his coat, he collapsed onto the bed. He had told Jun he was tired — but the real exhaustion only settled in once he was alone.</p>
 
@@ -730,7 +730,7 @@ korean_title: 침묵의 대가
 
 <p>Liu glanced at Juhan — who was scratching his cheek with one finger to hide his embarrassment while deliberately keeping his expression light and playful — and took the file.</p>
 
-<p>It was a proposal with the rather bold and ambitious title: *A Proposal for Phantom's Future: Achieving a 30% Increase in Annual Visitors!*</p>
+<p>It was a proposal with the rather bold and ambitious title: <em>A Proposal for Phantom's Future: Achieving a 30% Increase in Annual Visitors!</em></p>
 
 <p>"You said you'd support us if we showed initiative. So I thought about it — a way for Phantom to transform from a place that exhibits art as a luxury reserved for a select few, into a friendly space where the public can embrace art as part of their daily lives. Of course… the Director might not love the idea of customers wandering through the gallery just to drink coffee, but the era of high-nosed art is long over. If the public engages with art more often like this…"</p>
 
@@ -988,7 +988,7 @@ korean_title: 침묵의 대가
 
 <p>He leaned all the way back in the chair, pulled his legs up, and stretched them out long. Ankles crossed, hands clasped behind his head, his eyes closed on their own.</p>
 
-<p>*He didn't know why he had decided on this place.*</p>
+<p><em>He didn't know why he had decided on this place.</em></p>
 
 <p>He had been to Bali three or four times before, yet once he settled on a two-week vacation, nowhere else even came to mind.</p>
 
@@ -1101,7 +1101,7 @@ korean_title: 침묵의 대가
 
 <p>Looking into his shining eyes while he speaks of his longing for adventure and far-off places, and receiving from him a genuine solace for my ghost-like existence — a life spent turning Betas into Omegas as part of the 'business' of restoring my household — those moments have been the most fully human happiness I have ever known.</p>
 
-<p>I want to tell him that my pheromones, moving through my blood, are demanding that I live as *your* Alpha. Not Josef's. Not anyone else's.</p>
+<p>I want to tell him that my pheromones, moving through my blood, are demanding that I live as <em>your</em> Alpha. Not Josef's. Not anyone else's.</p>
 {% endcapture %}
 
 {% include excerpt.html content=excerpt %}
@@ -1272,7 +1272,7 @@ korean_title: 침묵의 대가
 
 <p>"'Colorful Ghosts' — what do you think that means?"</p>
 
-<p>Since around autumn, Ihyeon had been releasing a series called *Colorful Ghosts*. The paintings depicted various figures in his signature style — each subject's defining characteristics, strengths or weaknesses, were exaggerated, and the background of each piece gave form to that person's story. The series had been generating sharply divided opinions in Paris.</p>
+<p>Since around autumn, Ihyeon had been releasing a series called <em>Colorful Ghosts</em>. The paintings depicted various figures in his signature style — each subject's defining characteristics, strengths or weaknesses, were exaggerated, and the background of each piece gave form to that person's story. The series had been generating sharply divided opinions in Paris.</p>
 
 <p>Juhan didn't know that Liu was a Ghost. So he was speculating about the series title simply because it echoed the meaning of Phantom, reading it as a signal from Ihyeon that he still carried some lingering feeling for the gallery.</p>
 
