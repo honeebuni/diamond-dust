@@ -18,6 +18,10 @@
 
 <body>
 
+    <div class="reading-progress" aria-hidden="true">
+    <div class="reading-progress-bar"></div>
+</div>
+
     <header class="site-header">
 
         <div class="container header-inner">
@@ -96,6 +100,43 @@
         </div>
 
     </footer>
+
+    <a href="#" class="back-to-top" aria-label="Back to top">
+    ↑
+</a>
+
+    <script>
+
+    const progressBar = document.querySelector(".reading-progress-bar");
+    const backToTop = document.querySelector(".back-to-top");
+
+    function updateReadingUI() {
+
+        const scrollTop = window.scrollY;
+        const documentHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+        const progress =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+        progressBar.style.width = progress + "%";
+
+
+        if (scrollTop > 500) {
+            backToTop.classList.add("visible");
+        } else {
+            backToTop.classList.remove("visible");
+        }
+
+    }
+
+    window.addEventListener("scroll", updateReadingUI);
+
+    updateReadingUI();
+
+</script>
 
 </body>
 
