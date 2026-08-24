@@ -1,7 +1,8 @@
 ---
 layout: chapter
 volume: Volume 6
-chapter_number: V6.2
+chapter_number: 26
+chapter_id: V6.2
 title: Price of Silence
 korean_title: 침묵의 대가
 ---
