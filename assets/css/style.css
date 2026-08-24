@@ -998,46 +998,6 @@ img {
     text-align: right;
 }
 
-
-/* Back to top */
-
-.back-to-top {
-    position: fixed;
-
-    right: 28px;
-    bottom: 28px;
-
-    width: 46px;
-    height: 46px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid var(--border);
-
-    border-radius: 50%;
-
-    background: var(--background);
-
-    color: var(--text);
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform: translateY(10px);
-
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease,
-        transform 0.2s ease;
-}
-
 .back-to-top.is-visible {
     opacity: 1;
 
@@ -1297,4 +1257,37 @@ img {
 .reading-progress-bar {
     height: 100%;
     width: 0;
+}
+
+/* BACK TO TOP - TEST */
+
+a.back-to-top {
+    position: fixed !important;
+    right: 30px !important;
+    bottom: 30px !important;
+
+    width: 50px !important;
+    height: 50px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: white !important;
+    color: black !important;
+
+    border: 2px solid black !important;
+    border-radius: 50% !important;
+
+    font-family: sans-serif !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+
+    text-decoration: none !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    z-index: 99999 !important;
 }
