@@ -508,12 +508,12 @@ a:hover {
 .chapter-content {
     font-family: var(--font-reading);
 
-    font-size: 1.15rem;
-    line-height: 1.9;
+    font-size: 20px;
+    line-height: 2;
 }
 
 .chapter-content p {
-    margin: 0 0 1.25em;
+    margin: 0 0 1.4em;
 
     font-family: inherit;
     font-size: inherit;
@@ -884,9 +884,9 @@ a:hover {
     }
 
     .chapter-content {
-        font-size: 1.1rem;
-        line-height: 1.85;
-    }
+    font-size: 19px;
+    line-height: 1.9;
+}
 
 
     /* Reading components */
