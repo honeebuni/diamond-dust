@@ -567,9 +567,8 @@ a:hover {
    In-Story Excerpts
 ================================== */
 
-.chapter-content .excerpt {
-    margin: 2.5em 0;
-
+.chapter-content .novel-excerpt {
+    margin: 3em 0;
     padding: 1.5em 1.75em;
 
     border-left: 2px solid var(--border);
@@ -580,8 +579,12 @@ a:hover {
     line-height: 1.8;
 }
 
-.chapter-content .excerpt p {
+.chapter-content .novel-excerpt p {
     margin-bottom: 1em;
+}
+
+.chapter-content .novel-excerpt p:last-child {
+    margin-bottom: 0;
 }
 
 
