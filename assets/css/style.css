@@ -2,9 +2,11 @@
     --background: #f8f7f4;
     --surface: #ffffff;
     --text: #2b2b2b;
+    --secondary-text: #555555;
     --muted-text: #777777;
     --accent: #775f6f;
     --border: #dedbd6;
+    --border-strong: #aaa49c;    
 
     --font-heading: Georgia, serif;
     --font-body: Arial, sans-serif;
@@ -622,7 +624,7 @@ a:hover {
 
     padding: 1.4em 1.6em;
 
-    border: 1px dashed var(--border);
+    border: 1px dashed var(--border-strong);
     border-radius: 4px;
 
     font-size: 0.95em;
@@ -681,7 +683,7 @@ a:hover {
 .chapter-content .glossary-entry {
     margin: 0.75em 0;
 
-    color: #555555;
+    color: var(--secondary-text);
 
     font-family: var(--font-body);
 
@@ -1018,11 +1020,12 @@ a:hover {
 ================================== */
 
 .chapter-content .volume-end {
-    margin-top: 5em;
+    margin-top: 4.5em;
 }
 
-.chapter-content .volume-end > p:not(.glossary-entry) {
-    margin: 0 0 0.5em;
+.chapter-content .volume-end > p:not(.glossary-entry) + .glossary-entry {
+    margin-top: 2em;
+}
 
     color: #555555;
 
