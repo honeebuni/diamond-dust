@@ -71,7 +71,7 @@ korean_title: 시험
 
 <div class="volume-end">
 
-<p class="end-note"><em>To be continued in Diamond Dust, Volume 2.</em></p>
+<p><em>To be continued in Diamond Dust, Volume 2.</em></p>
 <p class="glossary-entry"><strong>Paddling</strong>: A surfing term. The act of lying prone on the board and using one's arms to move through the water, in order to reach a position to catch a wave.</p>
 <p class="glossary-entry"><strong>ALDI</strong>: A large multinational supermarket chain based in Germany.</p>
 <p class="glossary-entry"><strong>Monoprix</strong>: A large supermarket chain in France.</p>
