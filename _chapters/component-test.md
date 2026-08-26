@@ -55,18 +55,6 @@ korean_title: 시험
 
 <p>Normally, Ihyeon would have pretended not to hear, his earlobes reddening, or he would have scolded Liu. But perhaps because of the romantic atmosphere, or perhaps because of Liu's face — which looked especially handsome bathed in candlelight — this time he didn't avoid Liu's gaze, though his face flushed slightly. He even managed a small smile, and at that smile, which held ease even in the face of a sexual joke, Liu felt a new kind of thrill from Ihyeon, different from anything before.</p>
 
-<div class="volume-end">
-
-<p class="end-note"><em>To be continued in Diamond Dust, Volume 2.</em></p>
-<p class="glossary-entry"><strong>Paddling</strong>: A surfing term. The act of lying prone on the board and using one's arms to move through the water, in order to reach a position to catch a wave.</p>
-<p class="glossary-entry"><strong>ALDI</strong>: A large multinational supermarket chain based in Germany.</p>
-<p class="glossary-entry"><strong>Monoprix</strong>: A large supermarket chain in France.</p>
-<p class="glossary-entry"><strong>Monsieur</strong>: The French equivalent of the English "Mr."</p>
-<p class="glossary-entry"><strong>Joyeux Noël</strong>: The French Christmas greeting, equivalent to the English "Merry Christmas."</p>
-<p class="glossary-entry"><strong>Bistro</strong>: A French term referring to a casual, informal restaurant.</p>
-
-</div>
-
 <p class="sub-chapter"><strong>· DONGHAE ·</strong></p>
 
 <p>Liu woke up before the alarm. For a while, he lay there listening to the sound of the waves. Then he got out of bed, pulled a T-shirt over his head, and walked over to the minibar. He brewed a cup of coffee using a drip bag from the selection provided and headed toward the window. Around the horizon, just before sunrise, the sky was beginning to soak in a piercing blue and violet hue. Though the weather was overcast, the light seeped through the clouds with even greater intensity.</p>
@@ -78,5 +66,17 @@ korean_title: 시험
 <p>The End.</p>
 <p class="glossary-entry"><strong>Satay</strong>: A traditional skewered dish from Malay-speaking regions. Each piece is relatively small in size.</p>
 <p class="glossary-entry"><strong>Gender Reveal</strong>: The act of announcing a baby's sex to those around you, or the party held for that purpose.</p>
+
+</div>
+
+<div class="volume-end">
+
+<p class="end-note"><em>To be continued in Diamond Dust, Volume 2.</em></p>
+<p class="glossary-entry"><strong>Paddling</strong>: A surfing term. The act of lying prone on the board and using one's arms to move through the water, in order to reach a position to catch a wave.</p>
+<p class="glossary-entry"><strong>ALDI</strong>: A large multinational supermarket chain based in Germany.</p>
+<p class="glossary-entry"><strong>Monoprix</strong>: A large supermarket chain in France.</p>
+<p class="glossary-entry"><strong>Monsieur</strong>: The French equivalent of the English "Mr."</p>
+<p class="glossary-entry"><strong>Joyeux Noël</strong>: The French Christmas greeting, equivalent to the English "Merry Christmas."</p>
+<p class="glossary-entry"><strong>Bistro</strong>: A French term referring to a casual, informal restaurant.</p>
 
 </div>
