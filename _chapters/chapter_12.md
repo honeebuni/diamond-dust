@@ -605,5 +605,3 @@ korean_title: "방문객"
 <p class="glossary-entry"><strong>Take Off</strong>: A surfing term. The motion of identifying a wave and standing up on the board. This marks the true beginning of riding the wave.</p>
 
 </div>
-
-# Volume 3
