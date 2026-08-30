@@ -1914,5 +1914,3 @@ korean_title: "고백"
 <p><em>To be continued in Diamond Dust, Volume 5.</em></p>
 
 </div>
-
-# Volume 5
