@@ -1335,5 +1335,3 @@ korean_title: "다시, 바다로"
 <p class="glossary-entry"><strong>Pull Out</strong>: A surfing term. The act of exiting a wave you were riding based on your own judgment.</p>
 
 </div>
-
-# Side Story I
