@@ -127,38 +127,65 @@
             </div>
 
 
+{% assign volume_names = "Volume 1|Volume 2|Volume 3|Volume 4|Volume 5|Volume 6|Side Story I|Side Story II" | split: "|" %}
+
+{% for volume_name in volume_names %}
+
+    {% assign volume_chapters = site.chapters
+        | where: "volume", volume_name
+        | sort: "chapter_number"
+    %}
+
+    {% if volume_chapters.size > 0 %}
+
+        <div class="volume-group">
+
+            <h3 class="volume-title">
+                {{ volume_name }}
+            </h3>
+
+            {% if volume_name == "Side Story II" %}
+                <p class="volume-subtitle">
+                    A Diamond is Forever
+                </p>
+            {% endif %}
+
             <div class="chapter-list">
 
-    {% assign volume_one_chapters = site.chapters | where: "volume", "Volume 1" %}
+                {% for chapter in volume_chapters %}
 
-    {% for chapter in volume_one_chapters %}
+                    <a
+                        href="{{ chapter.url | relative_url }}"
+                        class="chapter-list-item"
+                    >
 
-        <a
-            href="{{ chapter.url | relative_url }}"
-            class="chapter-list-item"
-        >
+                        <div>
 
-            <div>
+                            <span class="chapter-number">
+                                Chapter {{ chapter.chapter_number }}
+                            </span>
 
-                <span class="chapter-number">
-                    {{ chapter.title }}
-                </span>
+                            <span class="chapter-title">
+                                {{ chapter.title }}
+                            </span>
 
-                <span class="chapter-volume">
-                    {{ chapter.volume }}
-                </span>
+                        </div>
+
+                        <span class="chapter-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                {% endfor %}
 
             </div>
 
-            <span class="chapter-arrow">
-                →
-            </span>
+        </div>
 
-        </a>
+    {% endif %}
 
-    {% endfor %}
-
-</div>
+{% endfor %}
 
         </div>
 
