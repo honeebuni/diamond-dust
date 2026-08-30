@@ -931,5 +931,3 @@ korean_title: "소외 1"
 <p class="glossary-entry"><strong>Paddling</strong>: A surfing term. The act of lying prone on the board and using one's arms to move through the water, in order to reach a position to catch a wave.</p>
 
 </div>
-
-# Volume 2
