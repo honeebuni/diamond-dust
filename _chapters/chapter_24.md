@@ -665,5 +665,3 @@ korean_title: "Ding"
 <p>3) Ted W. Jennings, <em>Reading Derrida / Thinking Paul: On Justice</em>, translated by Park Sung-hoon, Greenbee (2014).</p>
 
 </div>
-
-# Volume 6
