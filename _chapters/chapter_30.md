@@ -752,5 +752,3 @@ title: "Side by Side"
 <p>End of the <em>Diamond Dust</em> side story I.</p>
 
 </div>
-
-# Side Story II: A Diamond is Forever
