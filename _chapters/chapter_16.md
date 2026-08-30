@@ -1774,5 +1774,3 @@ korean_title: "변화"
 <p><em>To be continued in Diamond Dust, Volume 4.</em></p>
 
 </div>
-
-# Volume 4
