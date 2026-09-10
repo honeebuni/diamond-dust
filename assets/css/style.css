@@ -24,6 +24,7 @@
 
     /* Progress */
     --progress-track: #e3e7e9;
+    --progress-fill: #3f6d85;
 
     /* Fonts */
     --font-heading: Georgia, serif;
@@ -45,6 +46,8 @@
 
     --border: #343b40;
     --border-strong: #505a60;
+
+    --progress-fill: #8aabbc;
 
     --sticky-background: #24231f;
     --sticky-border: #575248;
@@ -791,7 +794,7 @@ a:hover {
     width: 0;
     height: 100%;
 
-    background: var(--accent);
+    background: var(--progress-fill);
 
     transition: width 0.1s linear;
 }
