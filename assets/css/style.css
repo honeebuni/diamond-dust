@@ -29,7 +29,7 @@
     /* Fonts */
     --font-heading: Georgia, serif;
     --font-body: Arial, sans-serif;
---font-reading: "Source Serif 4", Georgia, serif;
+    --font-reading: "Source Serif 4", Georgia, serif;
 }
 
 [data-theme="dark"] {
