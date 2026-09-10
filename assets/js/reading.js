@@ -1,34 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const progressBar =
-        document.querySelector(".reading-progress-bar");
+    /*
+     * Theme
+     */
 
-    const backToTop =
-        document.querySelector(".back-to-top");
+    const themeToggle =
+        document.querySelector(".theme-toggle");
 
-    const continueReading =
-        document.querySelector(".continue-reading");
+    const savedTheme =
+        localStorage.getItem("diamond-dust-theme");
 
-    const resumeButton =
-        document.querySelector(".continue-reading-resume");
+    if (savedTheme) {
+        document.documentElement.setAttribute(
+            "data-theme",
+            savedTheme
+        );
+    }
 
-    const dismissButton =
-        document.querySelector(".continue-reading-dismiss");
+    if (themeToggle) {
 
+        themeToggle.addEventListener("click", () => {
 
-    const storageKey =
-        `diamond-dust-progress-${window.location.pathname}`;
+            const currentTheme =
+                document.documentElement.getAttribute(
+                    "data-theme"
+                );
 
+            const newTheme =
+                currentTheme === "dark"
+                    ? "light"
+                    : "dark";
 
-    let savedPosition =
-        localStorage.getItem(storageKey);
+            document.documentElement.setAttribute(
+                "data-theme",
+                newTheme
+            );
+
+            localStorage.setItem(
+                "diamond-dust-theme",
+                newTheme
+            );
+
+        });
+
+    }
 
 
     /*
      * Reading progress
      */
 
+    const progressBar =
+        document.querySelector(".reading-progress-bar");
+
     function updateProgress() {
+
+        if (!progressBar) {
+            return;
+        }
 
         const scrollTop =
             window.scrollY;
@@ -49,33 +78,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-const themeToggle = document.querySelector(".theme-toggle");
 
-const savedTheme = localStorage.getItem("diamond-dust-theme");
-
-if (savedTheme) {
-    document.documentElement.setAttribute("data-theme", savedTheme);
-}
-
-if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-        const currentTheme =
-            document.documentElement.getAttribute("data-theme");
-
-        const newTheme =
-            currentTheme === "dark" ? "light" : "dark";
-
-        document.documentElement.setAttribute("data-theme", newTheme);
-
-        localStorage.setItem("diamond-dust-theme", newTheme);
-    });
-}
-    
     /*
      * Back to top
      */
 
+    const backToTop =
+        document.querySelector(".scroll-top-button");
+
     function updateBackToTop() {
+
+        if (!backToTop) {
+            return;
+        }
 
         if (window.scrollY > 600) {
 
@@ -89,22 +104,54 @@ if (themeToggle) {
 
     }
 
+    if (backToTop) {
 
-    backToTop.addEventListener("click", () => {
+        backToTop.addEventListener(
+            "click",
+            (event) => {
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+                event.preventDefault();
 
-    });
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    }
 
 
     /*
-     * Save reading position
+     * Reading-position persistence
      */
 
+    const continueReading =
+        document.querySelector(".continue-reading");
+
+    const resumeButton =
+        document.querySelector(
+            ".continue-reading-resume"
+        );
+
+    const dismissButton =
+        document.querySelector(
+            ".continue-reading-dismiss"
+        );
+
+    const storageKey =
+        `diamond-dust-progress-${window.location.pathname}`;
+
+    const savedPosition =
+        localStorage.getItem(storageKey);
+
+
     function savePosition() {
+
+        if (!progressBar) {
+            return;
+        }
 
         if (window.scrollY > 200) {
 
@@ -118,11 +165,8 @@ if (themeToggle) {
     }
 
 
-    /*
-     * Continue reading
-     */
-
     if (
+        continueReading &&
         savedPosition &&
         Number(savedPosition) > 300
     ) {
@@ -132,25 +176,39 @@ if (themeToggle) {
     }
 
 
-    resumeButton.addEventListener("click", () => {
+    if (resumeButton && continueReading) {
 
-        window.scrollTo({
-            top: Number(savedPosition),
-            behavior: "smooth"
-        });
+        resumeButton.addEventListener(
+            "click",
+            () => {
 
-        continueReading.hidden = true;
+                window.scrollTo({
+                    top: Number(savedPosition),
+                    behavior: "smooth"
+                });
 
-    });
+                continueReading.hidden = true;
+
+            }
+        );
+
+    }
 
 
-    dismissButton.addEventListener("click", () => {
+    if (dismissButton && continueReading) {
 
-        localStorage.removeItem(storageKey);
+        dismissButton.addEventListener(
+            "click",
+            () => {
 
-        continueReading.hidden = true;
+                localStorage.removeItem(storageKey);
 
-    });
+                continueReading.hidden = true;
+
+            }
+        );
+
+    }
 
 
     /*
