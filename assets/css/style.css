@@ -470,6 +470,9 @@ a:hover {
     transform: translateY(1px);
 }
 
+[data-theme="dark"] .button {
+    color: #182126;
+}
 
 /* ==================================
    Footer
