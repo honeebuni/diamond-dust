@@ -2,247 +2,140 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f8f8">
 
-    <title>
-        {{ page.title }} — Diamond Dust
-    </title>
+    <title>{{ page.title }} — Diamond Dust</title>
 
     {% include google-analytics.html %}
+    {% include theme-init.html %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500;1,8..60,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&family=Manrope:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500;1,8..60,600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-
 </head>
 
-
-<body>
+<body class="chapter-body" data-page-type="chapter" data-chapter-number="{{ page.chapter_number }}" data-chapter-title="{{ page.title | escape }}">
 
     <div class="reading-progress" aria-hidden="true">
         <div class="reading-progress-bar"></div>
+        <span class="reading-progress-label">0%</span>
     </div>
 
-
     <header class="site-header">
-
         <div class="container header-inner">
-
-            <a href="{{ '/' | relative_url }}" class="site-logo">
-                Diamond Dust
-            </a>
+            <a href="{{ '/' | relative_url }}" class="site-logo">Diamond Dust</a>
 
             <nav class="site-nav" aria-label="Main navigation">
+                <a href="{{ '/' | relative_url }}">Home</a>
+                <a href="{{ '/#chapters' | relative_url }}">Chapters</a>
+                <a href="{{ '/#about' | relative_url }}">About</a>
 
-                <a href="{{ '/' | relative_url }}">
-                    Home
-                </a>
-
-                <a href="{{ '/#chapters' | relative_url }}">
-                    Chapters
-                </a>
-
-                <a href="{{ '/#about' | relative_url }}">
-                    About
-                </a>
-
-                <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
-    ◐
-            </button>
-
+                <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme">
+                    <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+                </button>
             </nav>
-
         </div>
-
     </header>
 
-
     <main class="chapter-page">
-
         <article class="chapter">
-
             <header class="chapter-header">
+                <p class="chapter-volume">{{ page.volume }}</p>
+                <p class="chapter-number">Chapter {{ page.chapter_number }}</p>
 
-                <p class="chapter-volume">
-                    {{ page.volume }}
-                </p>
-
-                <p class="chapter-number">
-                    Chapter {{ page.chapter_number }}
-                </p>
-
-                <h1>
-                    {{ page.title }}
-                </h1>
+                <h1>{{ page.title }}</h1>
 
                 {% if page.korean_title %}
-                    <p class="chapter-korean-title">
-                        {{ page.korean_title }}
-                    </p>
+                    <p class="chapter-korean-title">{{ page.korean_title }}</p>
                 {% endif %}
-
             </header>
 
-
             <div class="chapter-content">
-
                 {{ content }}
-
             </div>
-
-                </article>
-
+        </article>
 
         <nav class="chapter-navigation" aria-label="Chapter navigation">
+            {% assign current_chapter = page.chapter_number | plus: 0 %}
+            {% assign previous_number = current_chapter | minus: 1 %}
+            {% assign next_number = current_chapter | plus: 1 %}
+            {% assign previous_chapter = nil %}
+            {% assign next_chapter = nil %}
 
-    {% assign current_chapter = page.chapter_number | plus: 0 %}
-    {% assign previous_number = current_chapter | minus: 1 %}
-    {% assign next_number = current_chapter | plus: 1 %}
+            {% for chapter in site.chapters %}
+                {% assign chapter_number = chapter.chapter_number | plus: 0 %}
+                {% if chapter_number == previous_number %}
+                    {% assign previous_chapter = chapter %}
+                {% endif %}
+                {% if chapter_number == next_number %}
+                    {% assign next_chapter = chapter %}
+                {% endif %}
+            {% endfor %}
 
-    {% assign previous_chapter = nil %}
-    {% assign next_chapter = nil %}
+            {% if previous_chapter %}
+                <a href="{{ previous_chapter.url | relative_url }}" class="chapter-nav-link chapter-nav-previous" aria-label="Previous chapter: {{ previous_chapter.title | escape }}">
+                    <span aria-hidden="true">←</span> Previous
+                </a>
+            {% else %}
+                <span class="chapter-nav-placeholder"></span>
+            {% endif %}
 
+            <button class="chapter-index chapter-drawer-trigger" type="button" aria-controls="chapter-drawer" aria-expanded="false">
+                Chapters
+            </button>
 
-    {% for chapter in site.chapters %}
-
-        {% assign chapter_number = chapter.chapter_number | plus: 0 %}
-
-        {% if chapter_number == previous_number %}
-            {% assign previous_chapter = chapter %}
-        {% endif %}
-
-        {% if chapter_number == next_number %}
-            {% assign next_chapter = chapter %}
-        {% endif %}
-
-    {% endfor %}
-
-
-    {% if previous_chapter %}
-
-        <a href="{{ previous_chapter.url | relative_url }}"
-           class="chapter-nav-link">
-
-            ← Chapter {{ previous_chapter.chapter_number }}
-            — {{ previous_chapter.title }}
-
-        </a>
-
-    {% else %}
-
-        <span class="chapter-nav-placeholder"></span>
-
-    {% endif %}
-
-
-    <a href="{{ '/' | relative_url }}"
-       class="chapter-index">
-
-        Chapters
-
-    </a>
-
-
-    {% if next_chapter %}
-
-        <a href="{{ next_chapter.url | relative_url }}"
-           class="chapter-nav-link">
-
-            Chapter {{ next_chapter.chapter_number }}
-            — {{ next_chapter.title }} →
-
-        </a>
-
-    {% else %}
-
-        <span class="chapter-nav-placeholder"></span>
-
-    {% endif %}
-
-</nav>
-
-
+            {% if next_chapter %}
+                <a href="{{ next_chapter.url | relative_url }}" class="chapter-nav-link chapter-nav-next" aria-label="Next chapter: {{ next_chapter.title | escape }}">
+                    Next <span aria-hidden="true">→</span>
+                </a>
+            {% else %}
+                <span class="chapter-nav-placeholder"></span>
+            {% endif %}
+        </nav>
     </main>
 
-
     <footer class="site-footer">
-
-        <div class="container">
-
-            <p>
-                Diamond Dust
-            </p>
-
+        <div class="container site-footer-inner">
+            <p>Diamond Dust</p>
+            <p class="footer-note">English fan translation</p>
         </div>
-
     </footer>
 
+    <div class="reader-dock" aria-label="Reading tools">
+        <button class="reader-dock-button chapter-drawer-trigger" type="button" aria-controls="chapter-drawer" aria-expanded="false">
+            <span class="reader-dock-icon" aria-hidden="true">☰</span>
+            <span>Contents</span>
+        </button>
 
-   <a href="#" class="scroll-top-button" aria-label="Back to top">
-    ↑
-</a>
+        <span class="reader-dock-progress" aria-label="Current chapter position">{{ page.chapter_id }}</span>
 
+        <button class="reader-dock-button reader-settings-trigger" type="button" aria-controls="reader-settings" aria-expanded="false">
+            <span class="reader-dock-icon" aria-hidden="true">Aa</span>
+            <span>Settings</span>
+        </button>
+    </div>
 
-    <script>
+    <aside class="resume-reading" hidden aria-live="polite">
+        <div>
+            <span class="resume-reading-label">Welcome back</span>
+            <strong class="resume-reading-text">Continue where you left off?</strong>
+        </div>
+        <div class="resume-reading-actions">
+            <button type="button" class="resume-reading-button" data-resume-reading>Resume</button>
+            <button type="button" class="resume-reading-dismiss" data-dismiss-resume aria-label="Dismiss resume prompt">×</button>
+        </div>
+    </aside>
 
-    const progressBar = document.querySelector(".reading-progress-bar");
-    const backToTop = document.querySelector(".scroll-top-button");
+    <a href="#" class="scroll-top-button" aria-label="Back to top" title="Back to top">↑</a>
 
+    {% include chapter-drawer.html %}
+    {% include reader-settings.html %}
 
-    function updateReadingUI() {
-
-        const scrollTop = window.scrollY;
-
-        const documentHeight =
-            document.documentElement.scrollHeight - window.innerHeight;
-
-        const progress =
-            documentHeight > 0
-                ? (scrollTop / documentHeight) * 100
-                : 0;
-
-        progressBar.style.width = progress + "%";
-
-
-        if (scrollTop > 500) {
-
-            backToTop.classList.add("is-visible");
-
-        } else {
-
-            backToTop.classList.remove("is-visible");
-
-        }
-
-    }
-
-
-    window.addEventListener("scroll", updateReadingUI);
-
-    updateReadingUI();
-
-
-    backToTop.addEventListener("click", function (event) {
-
-        event.preventDefault();
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    });
-
-</script>
-
-
-<script src="{{ '/assets/js/reading.js' | relative_url }}"></script>
-
+    <script src="{{ '/assets/js/reading.js' | relative_url }}"></script>
 </body>
+
 </html>

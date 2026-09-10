@@ -1,0 +1,51 @@
+<div class="drawer-backdrop" data-drawer-close hidden></div>
+
+<aside class="chapter-drawer" id="chapter-drawer" aria-label="Table of contents" aria-hidden="true">
+    <div class="chapter-drawer-header">
+        <div>
+            <p class="reader-sheet-kicker">Diamond Dust</p>
+            <h2>Chapters</h2>
+        </div>
+
+        <button class="icon-button" type="button" aria-label="Close chapter list" data-drawer-close>
+            ×
+        </button>
+    </div>
+
+    <div class="chapter-drawer-current">
+        <span>Currently reading</span>
+        <strong>Chapter {{ page.chapter_number }} · {{ page.title }}</strong>
+    </div>
+
+    <nav class="chapter-drawer-list" aria-label="Novel chapters">
+        {% assign drawer_volume_names = "Volume 1|Volume 2|Volume 3|Volume 4|Volume 5|Volume 6|Side Story I|Side Story II" | split: "|" %}
+        {% assign current_number = page.chapter_number | plus: 0 %}
+
+        {% for volume_name in drawer_volume_names %}
+            {% assign drawer_chapters = site.chapters | where: "volume", volume_name | sort: "chapter_number" %}
+
+            {% if drawer_chapters.size > 0 %}
+                <section class="drawer-volume">
+                    <h3>
+                        {{ volume_name }}
+                        {% if volume_name == "Side Story II" %}
+                            <span>A Diamond is Forever</span>
+                        {% endif %}
+                    </h3>
+
+                    {% for chapter in drawer_chapters %}
+                        {% assign drawer_number = chapter.chapter_number | plus: 0 %}
+                        <a
+                            href="{{ chapter.url | relative_url }}"
+                            class="drawer-chapter-link{% if drawer_number == current_number %} is-current{% endif %}"
+                            {% if drawer_number == current_number %}aria-current="page"{% endif %}
+                        >
+                            <span class="drawer-chapter-number">{{ chapter.chapter_number }}</span>
+                            <span class="drawer-chapter-title">{{ chapter.title }}</span>
+                        </a>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        {% endfor %}
+    </nav>
+</aside>
