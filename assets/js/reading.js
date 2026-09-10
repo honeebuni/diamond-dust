@@ -49,7 +49,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+const themeToggle = document.querySelector(".theme-toggle");
 
+const savedTheme = localStorage.getItem("diamond-dust-theme");
+
+if (savedTheme) {
+    document.documentElement.setAttribute("data-theme", savedTheme);
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+        const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+
+        const newTheme =
+            currentTheme === "dark" ? "light" : "dark";
+
+        document.documentElement.setAttribute("data-theme", newTheme);
+
+        localStorage.setItem("diamond-dust-theme", newTheme);
+    });
+}
+    
     /*
      * Back to top
      */
