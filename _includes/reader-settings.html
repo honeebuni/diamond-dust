@@ -9,27 +9,19 @@
             <h2>Reading settings</h2>
         </div>
 
-        <button class="icon-button reader-sheet-close" type="button" aria-label="Close reading settings" data-reader-sheet-close>
-            ×
-        </button>
+        <button class="icon-button reader-sheet-close" type="button" aria-label="Close reading settings" data-reader-sheet-close>×</button>
     </div>
 
     <div class="reader-setting-group">
-        <div class="reader-setting-heading">
-            <span>Theme</span>
-        </div>
-
-        <div class="segmented-control" role="group" aria-label="Theme">
-            <button type="button" data-theme-choice="light">Light</button>
-            <button type="button" data-theme-choice="dark">Dark</button>
+        <div class="reader-setting-heading"><span>Appearance</span></div>
+        <div class="segmented-control" role="group" aria-label="Appearance">
+            <button type="button" data-theme-choice="light"><span aria-hidden="true">☀</span> Light</button>
+            <button type="button" data-theme-choice="dark"><span aria-hidden="true">☾</span> Dark</button>
         </div>
     </div>
 
     <div class="reader-setting-group">
-        <div class="reader-setting-heading">
-            <span>Reading font</span>
-        </div>
-
+        <div class="reader-setting-heading"><span>Reading font</span></div>
         <div class="font-options" role="group" aria-label="Reading font">
             <button type="button" class="font-option font-source" data-font-choice="source">Source Serif 4</button>
             <button type="button" class="font-option font-newsreader" data-font-choice="newsreader">Newsreader</button>
@@ -43,7 +35,6 @@
             <label for="reader-font-size">Text size</label>
             <output id="reader-font-size-value" for="reader-font-size">20px</output>
         </div>
-
         <input id="reader-font-size" class="reader-range" type="range" min="17" max="25" step="1" value="20">
     </div>
 
@@ -52,11 +43,8 @@
             <label for="reader-line-height">Line spacing</label>
             <output id="reader-line-height-value" for="reader-line-height">2.0</output>
         </div>
-
         <input id="reader-line-height" class="reader-range" type="range" min="1.6" max="2.2" step="0.1" value="2.0">
     </div>
 
-    <button type="button" class="reader-reset" data-reader-reset>
-        Reset reading settings
-    </button>
+    <button type="button" class="reader-reset" data-reader-reset>Reset reading settings</button>
 </section>

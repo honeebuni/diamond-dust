@@ -1598,3 +1598,601 @@ a:hover {
         animation-iteration-count: 1 !important;
     }
 }
+
+/* ==================================
+   Reader Navigation Pass 2
+   Immersive mobile + desktop popovers
+================================== */
+
+.site-nav-button,
+.site-nav-icon {
+    border: 0;
+    background: transparent;
+    color: var(--secondary-text);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.site-nav-button {
+    padding: 8px 0;
+}
+
+.site-nav-button span {
+    margin-left: 3px;
+    color: var(--muted-text);
+    font-size: 0.8em;
+}
+
+.site-nav-icon {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.92rem;
+}
+
+.site-nav-button:hover,
+.site-nav-icon:hover {
+    color: var(--text);
+}
+
+.site-nav-icon:hover {
+    border-color: var(--border-strong);
+    background: var(--surface-soft);
+}
+
+/* The old persistent reader dock is intentionally retired. */
+.reader-dock {
+    display: none !important;
+}
+
+/* Percentage is intentionally retired; progress is visual only. */
+.reading-progress-label {
+    display: none !important;
+}
+
+/* Desktop keeps the quiet top-edge progress line. */
+.reading-progress {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    opacity: 1;
+    visibility: visible;
+    background: var(--progress-track);
+    transition: opacity 0.2s ease;
+}
+
+.reading-progress-bar {
+    width: 0;
+    height: 100%;
+    background: var(--progress-fill);
+}
+
+/* Shared overlays: no blur over the prose. */
+.drawer-backdrop,
+.reader-sheet-backdrop,
+.chapter-search-backdrop,
+.mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1190;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.drawer-backdrop,
+.chapter-search-backdrop,
+.mobile-menu-backdrop {
+    background: rgba(10, 15, 18, 0.16);
+}
+
+.reader-sheet-backdrop {
+    background: rgba(10, 15, 18, 0.035);
+}
+
+.drawer-backdrop[hidden],
+.reader-sheet-backdrop[hidden],
+.chapter-search-backdrop[hidden],
+.mobile-menu-backdrop[hidden] {
+    display: none;
+}
+
+/* Desktop contents behaves like a dropdown/popover instead of a side drawer. */
+.chapter-drawer {
+    top: 82px;
+    right: 112px;
+    bottom: auto;
+    width: min(430px, calc(100vw - 48px));
+    max-height: min(74vh, 700px);
+    padding: 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-glass);
+    box-shadow: var(--shadow-float);
+    backdrop-filter: blur(18px) saturate(125%);
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.985);
+    transform-origin: top right;
+    transition:
+        opacity 0.18s ease,
+        visibility 0.18s ease,
+        transform 0.18s ease;
+}
+
+.chapter-drawer.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.chapter-drawer-handle {
+    display: none;
+}
+
+.chapter-drawer-list {
+    flex: 1;
+}
+
+/* Desktop settings is a compact popover. The page remains visible underneath. */
+.reader-sheet {
+    top: 82px;
+    right: 24px;
+    bottom: auto;
+    left: auto;
+    width: min(410px, calc(100vw - 48px));
+    max-height: calc(100vh - 106px);
+    padding: 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-glass);
+    box-shadow: var(--shadow-float);
+    backdrop-filter: blur(18px) saturate(125%);
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.985);
+    transform-origin: top right;
+    transition:
+        opacity 0.18s ease,
+        visibility 0.18s ease,
+        transform 0.18s ease;
+}
+
+.reader-sheet.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.reader-sheet-handle {
+    display: none;
+}
+
+.reader-sheet-header h2,
+.chapter-drawer-header h2,
+.chapter-search-header h2 {
+    font-size: 1.55rem;
+}
+
+.reader-setting-group {
+    padding: 17px 0;
+}
+
+.segmented-control button,
+.font-option {
+    min-height: 42px;
+}
+
+/* Mobile-only controls and menus are absent on desktop. */
+.mobile-reader-controls,
+.mobile-reader-menu,
+.mobile-menu-backdrop,
+.chapter-search,
+.chapter-search-backdrop {
+    display: none;
+}
+
+.reader-search-match {
+    padding: 0 0.06em;
+    border-radius: 2px;
+    background: color-mix(in srgb, #f0cf70 60%, var(--surface));
+    color: inherit;
+}
+
+.reader-search-match.is-active {
+    background: #f0c34d;
+    box-shadow: 0 0 0 2px color-mix(in srgb, #f0c34d 42%, transparent);
+}
+
+[data-theme="dark"] .reader-search-match {
+    background: color-mix(in srgb, #8a6d25 72%, var(--surface));
+}
+
+[data-theme="dark"] .reader-search-match.is-active {
+    background: #a98832;
+}
+
+@media (max-width: 760px) {
+    /* The chapter becomes a book first, website second. */
+    .chapter-site-header {
+        display: none;
+    }
+
+    .chapter-page {
+        padding-top: 54px;
+    }
+
+    .chapter-body .site-footer {
+        margin-top: 0;
+    }
+
+    /* Hidden until the reader taps the page. */
+    .reading-progress {
+        top: 20%;
+        left: 5px;
+        width: 2px;
+        height: 60%;
+        border-radius: 999px;
+        background: var(--progress-track);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .reading-progress-bar {
+        width: 100%;
+        height: 0;
+        border-radius: inherit;
+    }
+
+    .reader-controls-visible .reading-progress {
+        opacity: 0.9;
+        visibility: visible;
+    }
+
+    .mobile-reader-controls {
+        position: fixed;
+        inset: 0;
+        z-index: 900;
+        display: block;
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.18s ease, visibility 0.18s ease;
+    }
+
+    .reader-controls-visible .mobile-reader-controls {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-home-control,
+    .mobile-reader-menu-trigger {
+        position: absolute;
+        pointer-events: auto;
+        border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+        background: var(--surface-glass);
+        color: var(--text);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(14px) saturate(125%);
+        -webkit-backdrop-filter: blur(14px) saturate(125%);
+    }
+
+    .mobile-home-control {
+        top: max(16px, env(safe-area-inset-top));
+        left: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-family: var(--font-heading);
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .mobile-reader-menu-trigger {
+        right: 16px;
+        bottom: max(18px, env(safe-area-inset-bottom));
+        width: 46px;
+        height: 46px;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .scroll-top-button {
+        display: none;
+    }
+
+    /* Small three-choice reader menu. */
+    .mobile-reader-menu {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: max(10px, env(safe-area-inset-bottom));
+        z-index: 1200;
+
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: var(--surface-glass);
+        box-shadow: 0 -16px 50px rgba(15, 25, 31, 0.16);
+        backdrop-filter: blur(18px) saturate(125%);
+        -webkit-backdrop-filter: blur(18px) saturate(125%);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(18px);
+        transition:
+            opacity 0.2s ease,
+            visibility 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .mobile-reader-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .mobile-menu-handle,
+    .chapter-drawer-handle {
+        display: block;
+        width: 38px;
+        height: 4px;
+        margin: 1px auto 5px;
+        border-radius: 999px;
+        background: var(--border-strong);
+    }
+
+    .mobile-menu-action {
+        min-height: 52px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--surface) 82%, transparent);
+        color: var(--text);
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .mobile-menu-action-icon {
+        color: var(--secondary-text);
+        font-size: 1.2rem;
+    }
+
+    .mobile-menu-aa {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+    }
+
+    .mobile-menu-backdrop {
+        display: block;
+        background: rgba(10, 15, 18, 0.08);
+    }
+
+    /* Contents now rises from the bottom on mobile. */
+    .chapter-drawer {
+        top: auto;
+        right: 6px;
+        bottom: 0;
+        left: 6px;
+        width: auto;
+        max-height: 86vh;
+        padding: 12px 18px 22px;
+
+        border: 1px solid var(--border);
+        border-bottom: 0;
+        border-radius: 20px 20px 0 0;
+        background: var(--surface-glass);
+        box-shadow: 0 -22px 60px rgba(15, 25, 31, 0.18);
+
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+        transform: translateY(105%);
+        transform-origin: bottom center;
+        transition: transform 0.25s ease;
+    }
+
+    .chapter-drawer.is-open {
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .drawer-backdrop {
+        background: rgba(10, 15, 18, 0.12);
+    }
+
+    .chapter-drawer-current {
+        margin: 18px 0 16px;
+    }
+
+    /* Search chapter sheet. */
+    .chapter-search {
+        position: fixed;
+        left: 6px;
+        right: 6px;
+        bottom: 0;
+        z-index: 1200;
+        display: block;
+        padding: 22px 18px max(24px, env(safe-area-inset-bottom));
+
+        border: 1px solid var(--border);
+        border-bottom: 0;
+        border-radius: 20px 20px 0 0;
+        background: var(--surface);
+        box-shadow: 0 -22px 60px rgba(15, 25, 31, 0.18);
+
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+        transform: translateY(105%);
+        transition: transform 0.25s ease;
+    }
+
+    .chapter-search.is-open {
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .chapter-search-backdrop {
+        display: block;
+        background: rgba(10, 15, 18, 0.12);
+    }
+
+    .chapter-search-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .chapter-search-header h2 {
+        margin: 0;
+    }
+
+    .chapter-search-field {
+        min-height: 52px;
+        padding: 0 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--background);
+    }
+
+    .chapter-search-field input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--text);
+        font-size: 1rem;
+    }
+
+    .chapter-search-field input::placeholder {
+        color: var(--muted-text);
+    }
+
+    .search-icon {
+        color: var(--secondary-text);
+        font-size: 1.15rem;
+    }
+
+    .chapter-search-status {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        color: var(--secondary-text);
+        font-size: 0.78rem;
+    }
+
+    .chapter-search-nav {
+        display: flex;
+        gap: 6px;
+    }
+
+    .chapter-search-nav[hidden] {
+        display: none;
+    }
+
+    .chapter-search-nav button {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        background: var(--surface-soft);
+        color: var(--text);
+        cursor: pointer;
+    }
+
+    .chapter-search-help {
+        margin: 4px 0 0;
+        color: var(--muted-text);
+        font-size: 0.72rem;
+    }
+
+    /* Reading settings remains live-previewable: no blur/dark veil. */
+    .reader-sheet {
+        top: auto;
+        right: 6px;
+        bottom: 0;
+        left: 6px;
+        width: auto;
+        max-height: 72vh;
+        padding: 12px 18px max(22px, env(safe-area-inset-bottom));
+
+        border: 1px solid var(--border);
+        border-bottom: 0;
+        border-radius: 20px 20px 0 0;
+        background: color-mix(in srgb, var(--surface) 97%, transparent);
+        box-shadow: 0 -22px 60px rgba(15, 25, 31, 0.15);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+        transform: translateY(105%);
+        transform-origin: bottom center;
+        transition: transform 0.25s ease;
+    }
+
+    .reader-sheet.is-open {
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .reader-sheet-handle {
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .reader-sheet-backdrop {
+        display: block;
+        background: rgba(10, 15, 18, 0.025);
+    }
+
+    .font-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resume-reading {
+        bottom: max(16px, env(safe-area-inset-bottom));
+    }
+}

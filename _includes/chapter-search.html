@@ -1,0 +1,26 @@
+<div class="chapter-search-backdrop" data-search-close hidden></div>
+
+<section class="chapter-search" id="chapter-search" aria-label="Search this chapter" aria-hidden="true">
+    <div class="chapter-search-header">
+        <div>
+            <p class="reader-sheet-kicker">Chapter {{ page.chapter_number }}</p>
+            <h2>Search chapter</h2>
+        </div>
+        <button class="icon-button" type="button" aria-label="Close search" data-search-close>×</button>
+    </div>
+
+    <label class="chapter-search-field">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input type="search" inputmode="search" autocomplete="off" placeholder="Find a word or phrase" data-chapter-search-input>
+    </label>
+
+    <div class="chapter-search-status" aria-live="polite">
+        <span data-search-count>Type to search this chapter</span>
+        <div class="chapter-search-nav" hidden>
+            <button type="button" data-search-prev aria-label="Previous match">↑</button>
+            <button type="button" data-search-next aria-label="Next match">↓</button>
+        </div>
+    </div>
+
+    <p class="chapter-search-help">Search stays within the chapter you are currently reading.</p>
+</section>

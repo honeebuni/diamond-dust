@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.documentElement;
     const body = document.body;
     const pageType = body.dataset.pageType || "";
+    const isChapter = pageType === "chapter";
+    const mobileQuery = window.matchMedia("(max-width: 760px)");
 
     /* ======================================================
        Helpers
@@ -20,9 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const setBodyOverlayState = () => {
         const anyOpen =
             document.querySelector(".chapter-drawer.is-open") ||
-            document.querySelector(".reader-sheet.is-open");
+            document.querySelector(".reader-sheet.is-open") ||
+            document.querySelector(".chapter-search.is-open") ||
+            document.querySelector(".mobile-reader-menu.is-open");
 
         body.classList.toggle("is-overlay-open", Boolean(anyOpen));
+    };
+
+    const closeMobileControls = () => {
+        body.classList.remove("reader-controls-visible");
     };
 
     /* ======================================================
@@ -42,9 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         themeToggles.forEach((toggle) => {
             const icon = toggle.querySelector(".theme-toggle-icon");
-            if (icon) {
-                icon.textContent = theme === "dark" ? "☀" : "☾";
-            }
+            if (icon) icon.textContent = theme === "dark" ? "☀" : "☾";
             toggle.setAttribute(
                 "aria-label",
                 theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
@@ -79,9 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     themeChoices.forEach((button) => {
-        button.addEventListener("click", () => {
-            setTheme(button.dataset.themeChoice);
-        });
+        button.addEventListener("click", () => setTheme(button.dataset.themeChoice));
     });
 
     updateThemeUI();
@@ -136,15 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         });
 
-        if (fontSizeInput) {
-            fontSizeInput.value = prefs.size;
-        }
-        if (fontSizeValue) {
-            fontSizeValue.textContent = `${prefs.size}px`;
-        }
-        if (lineHeightInput) {
-            lineHeightInput.value = prefs.lineHeight;
-        }
+        if (fontSizeInput) fontSizeInput.value = prefs.size;
+        if (fontSizeValue) fontSizeValue.textContent = `${prefs.size}px`;
+        if (lineHeightInput) lineHeightInput.value = prefs.lineHeight;
         if (lineHeightValue) {
             lineHeightValue.textContent = Number(prefs.lineHeight).toFixed(1);
         }
@@ -186,7 +184,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ======================================================
-       Chapter drawer
+       Mobile immersive controls
+    ====================================================== */
+
+    const mobileMenu = document.querySelector(".mobile-reader-menu");
+    const mobileMenuTrigger = document.querySelector(".mobile-reader-menu-trigger");
+    const mobileMenuBackdrop = document.querySelector(".mobile-menu-backdrop");
+    const mobileMenuClosers = document.querySelectorAll("[data-mobile-menu-close]");
+    const chapterArticle = document.querySelector(".chapter");
+
+    function showMobileControls() {
+        if (!isChapter || !mobileQuery.matches) return;
+        body.classList.add("reader-controls-visible");
+    }
+
+    function toggleMobileControls() {
+        if (!isChapter || !mobileQuery.matches || body.classList.contains("is-overlay-open")) return;
+        body.classList.toggle("reader-controls-visible");
+    }
+
+    function openMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.add("is-open");
+        mobileMenu.setAttribute("aria-hidden", "false");
+        if (mobileMenuBackdrop) mobileMenuBackdrop.hidden = false;
+        if (mobileMenuTrigger) mobileMenuTrigger.setAttribute("aria-expanded", "true");
+        setBodyOverlayState();
+    }
+
+    function closeMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove("is-open");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        if (mobileMenuBackdrop) mobileMenuBackdrop.hidden = true;
+        if (mobileMenuTrigger) mobileMenuTrigger.setAttribute("aria-expanded", "false");
+        setBodyOverlayState();
+    }
+
+    if (chapterArticle) {
+        chapterArticle.addEventListener("click", (event) => {
+            if (!mobileQuery.matches) return;
+            if (event.target.closest("a, button, input, mark, .sticky-note")) return;
+            toggleMobileControls();
+        });
+    }
+
+    if (mobileMenuTrigger) {
+        mobileMenuTrigger.addEventListener("click", (event) => {
+            event.stopPropagation();
+            openMobileMenu();
+        });
+    }
+
+    mobileMenuClosers.forEach((button) => button.addEventListener("click", closeMobileMenu));
+
+    /* ======================================================
+       Chapter contents
     ====================================================== */
 
     const chapterDrawer = document.querySelector(".chapter-drawer");
@@ -197,6 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function openDrawer() {
         if (!chapterDrawer) return;
 
+        closeMobileMenu();
         chapterDrawer.classList.add("is-open");
         chapterDrawer.setAttribute("aria-hidden", "false");
         if (drawerBackdrop) drawerBackdrop.hidden = false;
@@ -223,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     drawerClosers.forEach((button) => button.addEventListener("click", closeDrawer));
 
     /* ======================================================
-       Reader settings sheet
+       Reader settings
     ====================================================== */
 
     const readerSheet = document.querySelector(".reader-sheet");
@@ -234,6 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function openReaderSheet() {
         if (!readerSheet) return;
 
+        closeMobileMenu();
         readerSheet.classList.add("is-open");
         readerSheet.setAttribute("aria-hidden", "false");
         if (readerSheetBackdrop) readerSheetBackdrop.hidden = false;
@@ -254,10 +309,156 @@ document.addEventListener("DOMContentLoaded", () => {
     readerSheetTriggers.forEach((button) => button.addEventListener("click", openReaderSheet));
     readerSheetClosers.forEach((button) => button.addEventListener("click", closeReaderSheet));
 
+    /* ======================================================
+       Search current chapter
+    ====================================================== */
+
+    const searchSheet = document.querySelector(".chapter-search");
+    const searchBackdrop = document.querySelector(".chapter-search-backdrop");
+    const searchTriggers = document.querySelectorAll(".chapter-search-trigger");
+    const searchClosers = document.querySelectorAll("[data-search-close]");
+    const searchInput = document.querySelector("[data-chapter-search-input]");
+    const searchCount = document.querySelector("[data-search-count]");
+    const searchNav = document.querySelector(".chapter-search-nav");
+    const searchPrev = document.querySelector("[data-search-prev]");
+    const searchNext = document.querySelector("[data-search-next]");
+    const chapterContent = document.querySelector(".chapter-content");
+
+    let searchMarks = [];
+    let activeSearchIndex = -1;
+
+    function clearSearchHighlights() {
+        document.querySelectorAll("mark.reader-search-match").forEach((mark) => {
+            const parent = mark.parentNode;
+            mark.replaceWith(document.createTextNode(mark.textContent));
+            if (parent) parent.normalize();
+        });
+        searchMarks = [];
+        activeSearchIndex = -1;
+    }
+
+    function setActiveSearchMatch(index) {
+        if (!searchMarks.length) return;
+
+        activeSearchIndex = (index + searchMarks.length) % searchMarks.length;
+        searchMarks.forEach((mark, i) => {
+            mark.classList.toggle("is-active", i === activeSearchIndex);
+        });
+
+        const active = searchMarks[activeSearchIndex];
+        active.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        if (searchCount) {
+            searchCount.textContent = `${activeSearchIndex + 1} of ${searchMarks.length} matches`;
+        }
+    }
+
+    function runChapterSearch(query) {
+        clearSearchHighlights();
+
+        const term = query.trim();
+        if (!term || !chapterContent) {
+            if (searchCount) searchCount.textContent = "Type to search this chapter";
+            if (searchNav) searchNav.hidden = true;
+            return;
+        }
+
+        const walker = document.createTreeWalker(
+            chapterContent,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode(node) {
+                    if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                    if (node.parentElement?.closest("script, style, mark")) return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
+
+        const nodes = [];
+        let node;
+        while ((node = walker.nextNode())) nodes.push(node);
+
+        const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(escaped, "gi");
+
+        nodes.forEach((textNode) => {
+            const text = textNode.nodeValue;
+            regex.lastIndex = 0;
+            if (!regex.test(text)) return;
+            regex.lastIndex = 0;
+
+            const fragment = document.createDocumentFragment();
+            let lastIndex = 0;
+            let match;
+
+            while ((match = regex.exec(text)) !== null) {
+                fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+                const mark = document.createElement("mark");
+                mark.className = "reader-search-match";
+                mark.textContent = match[0];
+                fragment.appendChild(mark);
+                lastIndex = match.index + match[0].length;
+                if (match[0].length === 0) regex.lastIndex += 1;
+            }
+
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+            textNode.replaceWith(fragment);
+        });
+
+        searchMarks = Array.from(document.querySelectorAll("mark.reader-search-match"));
+
+        if (!searchMarks.length) {
+            if (searchCount) searchCount.textContent = "No matches";
+            if (searchNav) searchNav.hidden = true;
+            return;
+        }
+
+        if (searchNav) searchNav.hidden = false;
+        setActiveSearchMatch(0);
+    }
+
+    function openSearch() {
+        if (!searchSheet) return;
+
+        closeMobileMenu();
+        searchSheet.classList.add("is-open");
+        searchSheet.setAttribute("aria-hidden", "false");
+        if (searchBackdrop) searchBackdrop.hidden = false;
+        searchTriggers.forEach((button) => button.setAttribute("aria-expanded", "true"));
+        setBodyOverlayState();
+        window.setTimeout(() => searchInput?.focus(), 180);
+    }
+
+    function closeSearch() {
+        if (!searchSheet) return;
+
+        searchSheet.classList.remove("is-open");
+        searchSheet.setAttribute("aria-hidden", "true");
+        if (searchBackdrop) searchBackdrop.hidden = true;
+        searchTriggers.forEach((button) => button.setAttribute("aria-expanded", "false"));
+        clearSearchHighlights();
+        if (searchInput) searchInput.value = "";
+        if (searchCount) searchCount.textContent = "Type to search this chapter";
+        if (searchNav) searchNav.hidden = true;
+        setBodyOverlayState();
+    }
+
+    searchTriggers.forEach((button) => button.addEventListener("click", openSearch));
+    searchClosers.forEach((button) => button.addEventListener("click", closeSearch));
+
+    if (searchInput) {
+        searchInput.addEventListener("input", () => runChapterSearch(searchInput.value));
+    }
+    if (searchPrev) searchPrev.addEventListener("click", () => setActiveSearchMatch(activeSearchIndex - 1));
+    if (searchNext) searchNext.addEventListener("click", () => setActiveSearchMatch(activeSearchIndex + 1));
+
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
+            closeMobileMenu();
             closeDrawer();
             closeReaderSheet();
+            closeSearch();
         }
     });
 
@@ -266,7 +467,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ====================================================== */
 
     const progressBar = document.querySelector(".reading-progress-bar");
-    const progressLabel = document.querySelector(".reading-progress-label");
     const backToTop = document.querySelector(".scroll-top-button");
 
     const chapterNumber = body.dataset.chapterNumber;
@@ -276,6 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let latestPercent = 0;
     let saveTimer = null;
+    let lastScrollY = window.scrollY;
 
     function calculateProgress() {
         const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -287,10 +488,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!progressBar) return;
 
         latestPercent = calculateProgress();
-        const rounded = Math.round(latestPercent);
 
-        progressBar.style.width = `${latestPercent}%`;
-        if (progressLabel) progressLabel.textContent = `${rounded}%`;
+        if (mobileQuery.matches) {
+            progressBar.style.height = `${latestPercent}%`;
+            progressBar.style.width = "100%";
+        } else {
+            progressBar.style.width = `${latestPercent}%`;
+            progressBar.style.height = "100%";
+        }
     }
 
     function updateBackToTop() {
@@ -299,7 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function saveReadingState() {
-        if (pageType !== "chapter" || !chapterNumber) return;
+        if (!isChapter || !chapterNumber) return;
 
         if (window.scrollY > 120) {
             localStorage.setItem(chapterStorageKey, String(Math.round(window.scrollY)));
@@ -336,11 +541,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateProgress();
                 updateBackToTop();
                 scheduleSave();
+
+                if (mobileQuery.matches && Math.abs(window.scrollY - lastScrollY) > 8) {
+                    closeMobileControls();
+                }
+                lastScrollY = window.scrollY;
             },
             { passive: true }
         );
 
         window.addEventListener("pagehide", saveReadingState);
+        mobileQuery.addEventListener?.("change", updateProgress);
         updateProgress();
         updateBackToTop();
     }
@@ -354,7 +565,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dismissResume = document.querySelector("[data-dismiss-resume]");
     const resumeText = document.querySelector(".resume-reading-text");
 
-    if (pageType === "chapter" && savedPosition > 320 && resumePrompt) {
+    if (isChapter && savedPosition > 320 && resumePrompt) {
         const params = new URLSearchParams(window.location.search);
         const autoResume = params.get("resume") === "1";
 
@@ -364,21 +575,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateProgress();
             });
         } else {
-            const estimatedPercent = Math.round(
-                clamp(
-                    savedPosition /
-                        Math.max(
-                            document.documentElement.scrollHeight - window.innerHeight,
-                            1
-                        ) * 100,
-                    0,
-                    100
-                )
-            );
-
-            if (resumeText) {
-                resumeText.textContent = `Resume around ${estimatedPercent}%?`;
-            }
+            if (resumeText) resumeText.textContent = "Continue where you left off?";
             resumePrompt.hidden = false;
         }
     }
@@ -408,18 +605,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pageType === "home" && startButton && lastReading?.url) {
         startButton.href = `${lastReading.url}?resume=1`;
 
-        if (startLabel) {
-            startLabel.textContent = "Continue Reading";
-        }
+        if (startLabel) startLabel.textContent = "Continue Reading";
 
         if (continueDetail) {
             const title = lastReading.title ? ` · ${lastReading.title}` : "";
-            const percent = Number.isFinite(Number(lastReading.percent))
-                ? ` · ${lastReading.percent}%`
-                : "";
-
-            continueDetail.textContent = `Chapter ${lastReading.chapterNumber}${title}${percent}`;
+            continueDetail.textContent = `Chapter ${lastReading.chapterNumber}${title}`;
             continueDetail.hidden = false;
         }
+    }
+
+    if (isChapter && mobileQuery.matches) {
+        closeMobileControls();
     }
 });
