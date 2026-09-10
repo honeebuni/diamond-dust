@@ -462,7 +462,6 @@ a:hover {
 .button:hover {
     background-color: transparent;
     color: var(--accent-hover);
-
     text-decoration: none;
 }
 
@@ -472,6 +471,12 @@ a:hover {
 
 [data-theme="dark"] .button {
     color: #182126;
+}
+
+[data-theme="dark"] .button:hover {
+    background-color: transparent;
+    color: var(--accent-hover);
+    border-color: var(--accent-hover);
 }
 
 /* ==================================
