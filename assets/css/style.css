@@ -31,6 +31,28 @@
     --font-reading: Georgia, serif;
 }
 
+[data-theme="dark"] {
+    --background: #141719;
+    --surface: #1c2023;
+
+    --text: #e9ecec;
+    --secondary-text: #aab2b7;
+    --muted-text: #899299;
+
+    --accent: #8aabbc;
+    --accent-hover: #a5c1cf;
+    --accent-strong: #c1d3dc;
+
+    --border: #343b40;
+    --border-strong: #505a60;
+
+    --sticky-background: #24231f;
+    --sticky-border: #575248;
+    --sticky-text: #ddd8cc;
+
+    --progress-track: #2b3135;
+}
+
 
 /* ==================================
    Base
@@ -153,6 +175,23 @@ a:hover {
     color: var(--accent);
 }
 
+.theme-toggle {
+    padding: 0;
+
+    background: none;
+    color: var(--text);
+
+    border: 0;
+
+    font: inherit;
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+}
 
 /* ==================================
    Homepage
